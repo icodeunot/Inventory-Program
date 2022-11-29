@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ModifyProductController">
+   <children>
+      <Pane layoutX="50.0" layoutY="15.0" prefHeight="570.0" prefWidth="800.0" style="-fx-border-color: black; -fx-border-radius: 2%;">
+         <children>
+            <Label layoutX="40.0" layoutY="30.0" text="Modify Product">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <GridPane layoutX="40.0" layoutY="155.0" prefHeight="240.0" prefWidth="324.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="39.199951171875" minWidth="10.0" prefWidth="39.199951171875" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.80001220703124" minWidth="10.0" prefWidth="142.400048828125" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="36.799963378906256" minWidth="10.0" prefWidth="29.599951171875006" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label text="ID" />
+                  <Label text="Name" GridPane.rowIndex="1" />
+                  <Label text="Inv" GridPane.rowIndex="2" />
+                  <Label text="Price" GridPane.rowIndex="3" />
+                  <Label text="Max" GridPane.rowIndex="4" />
+                  <TextField fx:id="modProdId" disable="true" promptText="Auto Generated - Disabled" GridPane.columnIndex="1" />
+                  <TextField fx:id="modProdName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="modProdInv" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="modProdPrice" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="modProdMax" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label text="Min" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <GridPane.margin>
+                        <Insets left="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="modProdMin" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+               </children>
+            </GridPane>
+            <Group layoutX="389.20001220703125" layoutY="10.0">
+               <children>
+                  <TextField fx:id="modProdSearchField" layoutX="232.79998779296875" onKeyReleased="#modProdSearchEvent" promptText="Search by Part ID or Name" />
+                  <ScrollPane layoutX="0.79998779296875" layoutY="30.0" prefWidth="380.0">
+                     <content>
+                        <TitledPane text="Parts available for Product">
+                           <content>
+                              <TableView fx:id="addModProdTable" prefHeight="170.0" prefWidth="370.0">
+                                <columns>
+                                  <TableColumn fx:id="idColModAddProdTable" prefWidth="75.0" text="Part ID" />
+                                  <TableColumn fx:id="nameColModAddProdTable" prefWidth="75.0" text="Part Name" />
+                                    <TableColumn fx:id="inventoryColModAddProdTable" prefWidth="100.0" text="Inventory Level" />
+                                    <TableColumn fx:id="priceColModAddProdTable" prefWidth="120.0" text="Price/ Cost per Unit" />
+                                </columns>
+                              </TableView>
+                           </content>
+                        </TitledPane>
+                     </content>
+                  </ScrollPane>
+                  <Button fx:id="modProdAddButton" layoutX="341.79998779296875" layoutY="240.0" mnemonicParsing="false" onAction="#modProductAddClicked" text="Add" />
+               </children>
+            </Group>
+            <Group layoutX="389.0" layoutY="288.0">
+               <children>
+                  <ScrollPane layoutX="0.79998779296875" layoutY="0.79998779296875" prefWidth="380.0">
+                     <content>
+                        <TitledPane text="Parts being added to Product">
+                           <content>
+                              <TableView fx:id="removeModProdTable" prefHeight="170.0" prefWidth="370.0">
+                                 <columns>
+                                    <TableColumn fx:id="idColModRemoveProdTable" prefWidth="75.0" text="Part ID" />
+                                    <TableColumn fx:id="nameColModRemoveProdTable" prefWidth="75.0" text="Part Name" />
+                                    <TableColumn fx:id="inventoryColModRemoveProdTable" prefWidth="100.0" text="Inventory Level" />
+                                    <TableColumn fx:id="priceColModRemoveProdTable" prefWidth="120.0" text="Price/ Cost per Unit" />
+                                 </columns>
+                              </TableView>
+                           </content>
+                        </TitledPane>
+                     </content>
+                  </ScrollPane>
+                  <Button fx:id="modProdRemoveButton" layoutX="237.79998779296875" layoutY="210.79998779296875" mnemonicParsing="false" onAction="#modProdRemoveClicked" text="Remove Associated Part" />
+                  <Button fx:id="modProdSave" layoutX="268.79998779296875" layoutY="240.79998779296875" mnemonicParsing="false" onAction="#modProdSaveClicked" text="Save" />
+                  <Button fx:id="modProdCancel" layoutX="328.79998779296875" layoutY="240.79998779296875" mnemonicParsing="false" onAction="#modProdCancelClicked" text="Cancel" />
+               </children>
+            </Group>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
